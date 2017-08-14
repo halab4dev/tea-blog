@@ -1,0 +1,20 @@
+/**
+ * @author halab.
+ */
+'use strict';
+
+
+module.exports = {
+	//Common code
+	SUCCESS: 200,
+	BAD_REQUEST: 400,
+	UNAUTHORIZED: 401,
+	PERMISSION_DENIED: 403,
+	INTERNAL_SERVER_ERROR: 500,
+
+	//Authentication
+	INCORRECT_EMAIL_OR_PASSWORD: 410,
+	ACCESS_TOKEN_EXPIRED: 411,
+	REFRESH_TOKEN_EXPIRED: 412,
+	USER_INFO_CHANGED: 413,
+};
