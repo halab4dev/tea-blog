@@ -52,7 +52,7 @@ teaBlogCore.factory('CommonAPISetting', ['$rootScope', '$localStorage', '$inject
 					|| response.data.code === ResponseCode.REFRESH_TOKEN_EXPIRED) {
 					window.location.href = ServerAddress.WEB_SERVER + '/login';
 
-				} else if (response.data.code !== ResponseCode.SUCCESS) {
+				} else if (response.data.code && response.data.code !== ResponseCode.SUCCESS) {
 					flash.error = response.data.errors[0];
 
 				} else {

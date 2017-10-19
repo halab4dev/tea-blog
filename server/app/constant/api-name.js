@@ -9,4 +9,5 @@ module.exports = {
 	REFRESH_TOKEN: 'Refresh token API',
 	CREATE_NEW_POST: 'Create New Post API',
 	GET_POST: 'Get Post API',
+	LIST_TAGS: "List Tags",
 };

@@ -8,7 +8,9 @@ const BodyParser = require('body-parser');
 const CORS = require('cors');
 
 const Configuration = require('../config');
+const PostRouter = require('./router/post-router');
 const SessionRouter = require('./router/session-router');
+const TagRouter = require('./router/tag-router');
 
 
 let app = Express();
@@ -22,7 +24,9 @@ let configServer = function () {
 };
 
 let initServices = function () {
+	PostRouter.setup(app);
 	SessionRouter.setup(app);
+	TagRouter.setup(app);
 };
 
 let setupErrorHandler = function () {

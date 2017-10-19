@@ -1,10 +1,143 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="teaBlogAdmin">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Tea Blog - Dashboard</title>
+
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.6 -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../lib/adminLTE/css/AdminLTE.min.css">
+    <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
+          page. However, you can choose any other skin. Make sure you
+          apply the skin class to the body tag so the changes take effect.
+    -->
+    <link rel="stylesheet" href="../lib/adminLTE/css/skins/skin-blue.min.css">
+    <link rel="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="../lib/simple-markdown-editor/simplemde.min.css">
+    <link rel="stylesheet" href="../lib/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css">
 </head>
-<body>
-<h1>Admin page</h1>
+
+<!--
+BODY TAG OPTIONS:
+=================
+Apply one or more of the following classes to get the
+desired effect
+|---------------------------------------------------------|
+| SKINS         | skin-blue                               |
+|               | skin-black                              |
+|               | skin-purple                             |
+|               | skin-yellow                             |
+|               | skin-red                                |
+|               | skin-green                              |
+|---------------------------------------------------------|
+|LAYOUT OPTIONS | fixed                                   |
+|               | layout-boxed                            |
+|               | layout-top-nav                          |
+|               | sidebar-collapse                        |
+|               | sidebar-mini                            |
+|---------------------------------------------------------|
+-->
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
+    <!-- Main Header -->
+    <header class="main-header">
+        <admin-page-header></admin-page-header>
+    </header>
+
+    <!-- Left side column. contains the logo and sidebar -->
+    <admin-left-menu></admin-left-menu>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                {{title}}
+            </h1>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <!-- Your Page Content Here -->
+            <ui-view></ui-view>
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+</div>
+<!-- ./wrapper -->
+
+<!--FLASH MESSAGES-->
+<!--Error flash message-->
+<div flash-alert="error" active-class="in alert-flash" class="fade">
+    <button type="button" class="close" ng-click="hide()">&times;</button>
+    <strong class="alert-heading">Error!</strong>
+    <span class="alert-message" ng-bind="flash.message"></span>
+</div>
+<!-- Success flash messages. -->
+<div flash-alert="success" active-class="in alert-flash" class="alert fade">
+    <button type="button" class="close" ng-click="hide()">&times;</button>
+    <strong class="alert-heading">Success</strong>
+    <span class="alert-message" ng-bind="flash.message"></span>
+</div>
+
+<!-- REQUIRED JS SCRIPTS -->
+
+<!-- jQuery 2.2.3 -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<!-- Bootstrap 3.3.6 -->
+<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- AdminLTE App -->
+<script src="../lib/adminLTE/js/app.min.js"></script>
+
+<script src="../lib/simple-markdown-editor/simplemde.min.js"></script>
+<script src="../lib/bootstrap-datetimepicker/moment.js"></script>
+<script src="../lib/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js"></script>
+
+<!--Angular-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.11/angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.3/angular-ui-router.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.11/angular-resource.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.11/angular-animate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.11/angular-touch.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.10/ngStorage.min.js"></script>
+<script src="../lib/angular-flash/angular-flash.min.js"></script>
+
+<!--Modules-->
+<script src="../app/module/tea-blog-core-module.js"></script>
+<script src="../app/module/tea-blog-admin-module.js"></script>
+
+<!--Constant-->
+<script src="../app/constant/public-type.js"></script>
+<script src="../app/constant/response-code.js"></script>
+<script src="../app/constant/server-address.js"></script>
+
+<!--Directive-->
+<script src="../app/directive/admin-page-header-directive.js"></script>
+<script src="../app/directive/admin-left-menu-directive.js"></script>
+
+<!--Controller-->
+<script src="../app/controller/editor-controller.js"></script>
+
+<!--Service-->
+<script src="../app/service/post-service.js"></script>
+<script src="../app/service/tag-service.js"></script>
+
+<!--Util-->
+<script src="../app/util/string-util.js"></script>
+
 </body>
 </html>

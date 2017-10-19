@@ -28,6 +28,23 @@ class AbstractRepository {
 		return collection.insertOne(entity);
 	}
 
+	insertMany(entities) {
+		let collection = this.getCollection();
+		let now = DateTimeUtil.now();
+		for(let i = 0; i < entities.length; i++){
+			let entity = entities[i];
+			entity.isDeleted = false;
+			entity.createTime = now;
+			entity.updateTime = now;
+		}
+		return collection.insertMany(entities);
+	}
+
+	list(skip, take, projection) {
+		let collection = this.getCollection();
+		return collection.find({isDeleted:false}, projection).skip(skip).limit(take).toArray();
+	}
+
 	findById(id) {
 		let collection = this.getCollection();
 		let objectId = new Mongo.ObjectId(id);

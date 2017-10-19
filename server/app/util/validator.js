@@ -3,6 +3,7 @@
  */
 'use strict';
 
+const PublicType = require('../constant/public-type');
 
 module.exports = {
 
@@ -31,4 +32,12 @@ module.exports = {
 		}
 		return true;
 	},
+
+	isInteger: function(value) {
+		return Number.isInteger(value);
+	},
+
+	isValidPublicType: function(value) {
+		return PublicType.PRIVATE === value || PublicType.PUBLIC === value;
+	}
 };

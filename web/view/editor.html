@@ -1,0 +1,103 @@
+<div class="row-fluid">
+    <form class="form-inline">
+        <div class="col-sm-9 col-md-9 col-lg-10">
+            <input type="text" class="form-control full-width" placeholder="Title" ng-model="post.title"/>
+        </div>
+        <div class="col-sm-3 col-md-3 col-lg-2">
+            <div class="btn-group">
+                <button class="btn btn-primary" ng-click="save()">Save</button>
+                <button class="btn btn-primary" ng-click="openModal()" data-toggle="modal" data-target="#post-setting-modal">
+                    <i class="fa fa-cog" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+<br>
+<div class="row-fluid bg-white">
+    <textarea id="editor"></textarea>
+</div>
+
+
+<!--Setting modal-->
+<div class="modal fade in" id="post-setting-modal" style="display: none; padding-right: 17px;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">Post Setting</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row-fluid">
+                    <form>
+                        <!--Public Type-->
+                        <div class="form-group">
+                            <label>Public Type:</label>
+                            <!--<select class="form-control" ng-model="post.publicType">-->
+                                <!--<option value="1">Public</option>-->
+                                <!--<option value="-1">Private</option>-->
+                            <!--</select>-->
+                            <select class="form-control" ng-model="post.publicType" ng-options="type.value as type.label for type in publicTypes"></select>
+                        </div>
+
+                        <!--Public Time-->
+                        <div class="form-group">
+                            <label>Date:</label>
+                            <div class="input-group date">
+                                <input type="text" class="form-control" ng-model="input.publicDate"
+                                       uib-datepicker-popup="dd-MMM-yyyy" datepicker-options="datePickerOptions"
+                                       is-open="datePicker.opened" close-text="Close"/>
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" ng-click="openDatePicker()">
+                                        <i class="glyphicon glyphicon-calendar"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+
+                        <!--Tags-->
+                        <div class="form-group">
+                            <label>Tags:</label>
+                            <input id="tag-input" type="text" class="form-control" list="tags"
+                                   placeholder="Enter tag here" ng-model="input.tag"
+                                   ng-keypress="enterNewTag($event)"/>
+                            <datalist id="tags">
+                                <select>
+                                    <option ng-repeat="tag in suggestedTags" value="{{tag.name}}"></option>
+                                </select>
+                            </datalist>
+                            <br>
+                            <div>
+                                <span class="badge bg-light-blue hover-pointer" ng-repeat="tag in post.tags"
+                                      ng-click="removeTag($index)">{{tag.name}} x</span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal" ng-click="cancel()">Cancel</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+<scrip src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></scrip>
+<scrip src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.13/moment-timezone.min.js"></scrip>
+<scrip src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.13/moment-timezone-with-data-2012-2022.min.js"></scrip>
+<scrip src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.13/moment-timezone-with-data.min.js"></scrip>
+<script>
+	var simpleMDE = new SimpleMDE({
+		element: document.getElementById("editor")
+	});
+	//	var publicTime = $('#datetimepicker');
+	//	publicTime.datetimepicker();
+	//	$(function () {
+	//		$('#datetimepicker').datetimepicker();
+	//	});
+
+</script>
